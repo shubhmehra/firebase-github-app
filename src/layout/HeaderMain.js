@@ -1,14 +1,5 @@
 import React, { useState, useContext } from "react";
 import { Menu, Segment, Header } from "semantic-ui-react";
-// import {
-//   Collapse,
-//   Navbar,
-//   NavbarToggler,
-//   NavbarBrand,
-//   Nav,
-//   NavItem,
-//   NavbarText,
-// } from "reactstrap";
 import { Link, NavLink } from "react-router-dom";
 import { UserContext } from "../Context/UserContext";
 
@@ -18,9 +9,11 @@ const HeaderMain = () => {
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
   const [activeItem, setActiveItem] = useState("home");
+
   const handleItemClick = (e, { name }) => {
     setActiveItem(name);
   };
+
   return (
     <div>
       <Segment inverted>

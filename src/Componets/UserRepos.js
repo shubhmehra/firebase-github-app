@@ -6,8 +6,8 @@ const UserRepos = ({ repos_url }) => {
   const [repos, setRepos] = useState([]);
 
   const fetchRepos = async () => {
-    // const { data } = await axios.get(repos_url);
-    // setRepos(data);
+    const { data } = await axios.get(repos_url);
+    setRepos(data);
   };
 
   useEffect(() => {
@@ -16,26 +16,15 @@ const UserRepos = ({ repos_url }) => {
 
   return (
     <Card.Group>
-      <Card fluid>
-        <Image wrapped ui={false} />
-        <Card.Content>
-          <Card.Header>Daniel</Card.Header>
-          <Card.Meta>Joined in 2016</Card.Meta>
-          <Card.Description>
-            Daniel is a comedian living in Nashville.
-          </Card.Description>
-        </Card.Content>
-      </Card>
-      <Card fluid>
-        <Image wrapped ui={false} />
-        <Card.Content>
-          <Card.Header>Daniel</Card.Header>
-          <Card.Meta>Joined in 2016</Card.Meta>
-          <Card.Description>
-            Daniel is a comedian living in Nashville.
-          </Card.Description>
-        </Card.Content>
-      </Card>
+      {repos.map((repo) => (
+        <Card fluid color="orange">
+          <Card.Content>
+            <Card.Header>{repo.name}</Card.Header>
+            <Card.Meta>{repo.language}</Card.Meta>
+            <Card.Description>{repo.description}</Card.Description>
+          </Card.Content>
+        </Card>
+      ))}
     </Card.Group>
   );
 };
