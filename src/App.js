@@ -1,19 +1,29 @@
 import React, { useState } from "react";
-import logo from "./logo.svg";
-import "./App.css";
+
+//react-router
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+
+//toast
 import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.min.css";
+import "./App.css";
+//firebase
 import firebase from "firebase/app";
 import "firebase/auth";
-import Home from "./Pages/Home";
-import SignUp from "./Pages/SignUp";
-import SignIn from "./Pages/SignIn";
-import PageNotFound from "./Pages/PageNotFound";
+import FirebaseConfig from "./Config/FirebaseConfig";
+
+//components
+import Home from "./pages/Home";
+import SignIn from "./pages/SignIn";
+import SignUp from "./pages/SignUp";
+import PageNotFound from "./pages/PageNotFound";
 import { UserContext } from "./Context/UserContext";
 import Footer from "./layout/Footer";
-import Header from "./layout/Header";
-import "react-toastify/dist/ReactToastify.min.css";
-import "bootstrap/dist/css/bootstrap.min.css";
+import HeaderMain from "./layout/HeaderMain";
+
+//init firebase
+
+firebase.initializeApp(FirebaseConfig);
 
 const App = () => {
   const [user, setUser] = useState(null);
@@ -21,7 +31,7 @@ const App = () => {
     <Router>
       <ToastContainer />
       <UserContext.Provider value={{ user, setUser }}>
-        <Header />
+        <HeaderMain />
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/signin" component={SignIn} />
